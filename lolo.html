@@ -2,24 +2,235 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Lolo</title>
+  <title>Invitación</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; min-height: 100%; }
+    body {
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top, #ffd5e7 0%, #ff98c8 35%, #ff5ba3 100%);
+      color: #1b1423;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    .scene {
+      width: min(100%, 420px);
+      padding: 1.25rem;
+      display: grid;
+      gap: 1rem;
+      position: relative;
+    }
+    .card {
+      background: rgba(255,255,255,0.95);
+      border-radius: 32px;
+      box-shadow: 0 40px 90px rgba(255, 95, 156, 0.25);
+      padding: 1.4rem;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.5);
+    }
+    .top-bar {
+      display: flex;
+      gap: 0.45rem;
+      margin-bottom: 1rem;
+    }
+    .dot { width: 11px; height: 11px; border-radius: 999px; }
+    .dot:nth-child(1) { background: #ff7e9d; }
+    .dot:nth-child(2) { background: #ffd85b; }
+    .dot:nth-child(3) { background: #7bd9ff; }
+    .header {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .header h1 {
+      font-size: 1.35rem;
+      margin: 0;
+      line-height: 1.1;
+    }
+    .header p {
+      margin: 0.65rem auto 0;
+      color: #8f637d;
+      max-width: 86%;
+      font-size: 0.95rem;
+    }
+    .image-card {
+      background: linear-gradient(180deg, #fff4f8 0%, #ffc5e2 100%);
+      border-radius: 26px;
+      padding: 1rem;
+      display: grid;
+      place-items: center;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.65);
+      margin-bottom: 1rem;
+      min-height: 220px;
+    }
+    .image-card span {
+      font-size: 5rem;
+      display: block;
+      margin-bottom: 0.65rem;
+    }
+    .image-card small {
+      display: block;
+      color: #8f637d;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .actions {
+      display: grid;
+      gap: 0.9rem;
+      margin-top: 0.5rem;
+    }
+    .button {
+      border: none;
+      border-radius: 999px;
+      padding: 0.95rem 1.25rem;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 20px 40px rgba(255, 91, 148, 0.18);
+    }
+    .button:hover { transform: translateY(-2px); }
+    .button.yes { background: #32d583; color: white; }
+    .button.no { background: #ff5b6b; color: white; }
+    .code-window {
+      background: #1b1430;
+      color: #f7f1ff;
+      border-radius: 24px;
+      padding: 1rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      box-shadow: 0 28px 60px rgba(0, 0, 0, 0.18);
+      position: relative;
+    }
+    .code-window::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent 50%);
+      pointer-events: none;
+    }
+    .code-header {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.85rem;
+    }
+    .code-header span {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      display: block;
+    }
+    .code-header span:nth-child(1) { background: #ff6b6b; }
+    .code-header span:nth-child(2) { background: #ffcc55; }
+    .code-header span:nth-child(3) { background: #5bd2ff; }
+    .code-line { white-space: pre-wrap; }
+    .code-keyword { color: #79c0ff; }
+    .code-string { color: #9cffb7; }
+    .code-func { color: #f9c74f; }
+    .message {
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.92);
+      border-radius: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .message.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .message h2 {
+      margin: 0;
+      font-size: 1.7rem;
+      color: #ff2f82;
+    }
+    .message p { margin: 0.75rem 0 0; color: #7b4b6d; }
+  </style>
 </head>
 <body>
-  <div id="corwrapper">corwrapper</div>
-  <div id="ribbon">ribbon</div>
+  <div class="scene">
+    <div class="card" id="inviteCard">
+      <div class="top-bar">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+      <div class="header">
+        <h1>¿Quieres salir conmigo? <span>🥺</span></h1>
+        <p>Esta invitación es especial y llegó directo desde el código.</p>
+      </div>
+      <div class="image-card">
+        <span>💌</span>
+        <small>Un momento mágico</small>
+      </div>
+      <div class="actions">
+        <button class="button yes" id="yesButton">Sí</button>
+        <button class="button no" id="noButton">No</button>
+      </div>
+      <div class="code-window">
+        <div class="code-header">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="code-line"><span class="code-keyword">gsap.to</span>([<span class="code-func">cordWrapper</span>, <span class="code-func">ribbon</span>], {</div>
+        <div class="code-line">  opacity: <span class="code-string">0</span>,</div>
+        <div class="code-line">  duration: <span class="code-string">0.5</span>,</div>
+        <div class="code-line">  onComplete: () => {</div>
+        <div class="code-line">    cordWrapper.style.display = <span class="code-string">"none"</span>;</div>
+        <div class="code-line">    ribbon.style.display = <span class="code-string">"none"</span>;</div>
+        <div class="code-line">  }</div>
+        <div class="code-line">});</div>
+      </div>
+      <div class="message" id="messageBox">
+        <div>
+          <h2>¡Genial!</h2>
+          <p>La invitación se aceptó. Ahora comparte este enlace con quien quieras.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script>
-    const corwrapper = document.getElementById('corwrapper');
-    const ribbon = document.getElementById('ribbon');
+    const inviteCard = document.getElementById('inviteCard');
+    const yesButton = document.getElementById('yesButton');
+    const noButton = document.getElementById('noButton');
+    const messageBox = document.getElementById('messageBox');
 
-    gsap.to([corwrapper, ribbon], {
+    gsap.from(inviteCard, {
       opacity: 0,
-      duration: 0.5,
-      onComplete: function() {
-        corwrapper.style.display = 'none';
-        ribbon.style.display = 'none';
-      }
+      y: 40,
+      scale: 0.95,
+      duration: 0.9,
+      ease: 'power3.out'
+    });
+
+    yesButton.addEventListener('click', () => {
+      gsap.to(inviteCard, {
+        scale: 0.98,
+        duration: 0.2,
+        yoyo: true,
+        repeat: 1
+      });
+      messageBox.classList.add('visible');
+    });
+
+    noButton.addEventListener('click', () => {
+      gsap.to(inviteCard, {
+        rotation: -3,
+        x: -10,
+        duration: 0.2,
+        yoyo: true,
+        repeat: 1
+      });
     });
   </script>
 </body>

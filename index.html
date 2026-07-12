@@ -95,43 +95,6 @@
     .button:hover { transform: translateY(-2px); }
     .button.yes { background: #32d583; color: white; }
     .button.no { background: #ff5b6b; color: white; }
-    .code-window {
-      background: #1b1430;
-      color: #f7f1ff;
-      border-radius: 24px;
-      padding: 1rem;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      font-size: 0.95rem;
-      line-height: 1.6;
-      box-shadow: 0 28px 60px rgba(0, 0, 0, 0.18);
-      position: relative;
-    }
-    .code-window::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 24px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent 50%);
-      pointer-events: none;
-    }
-    .code-header {
-      display: flex;
-      gap: 0.5rem;
-      margin-bottom: 0.85rem;
-    }
-    .code-header span {
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      display: block;
-    }
-    .code-header span:nth-child(1) { background: #ff6b6b; }
-    .code-header span:nth-child(2) { background: #ffcc55; }
-    .code-header span:nth-child(3) { background: #5bd2ff; }
-    .code-line { white-space: pre-wrap; }
-    .code-keyword { color: #79c0ff; }
-    .code-string { color: #9cffb7; }
-    .code-func { color: #f9c74f; }
     .message {
       position: absolute;
       inset: 0;
@@ -167,7 +130,7 @@
       </div>
       <div class="header">
         <h1>¿Quieres salir conmigo? <span>🥺</span></h1>
-        <p>INVITACION ESPECIAL PA BRINDARME UNAS EMPAANADA, QUE DICES:</p>
+        <p>INVITACIÓN ESPECIAL PA BRINDARME UNAS EMPANADAS, QUE DICES:</p>
       </div>
       <div class="image-card">
         <span>💌</span>
@@ -177,23 +140,10 @@
         <button class="button yes" id="yesButton">Sí</button>
         <button class="button no" id="noButton">No</button>
       </div>
-      <div class="code-window">
-        <div class="code-header">
-          <span></span><span></span><span></span>
-        </div>
-        <div class="code-line"><span class="code-keyword">gsap.to</span>([<span class="code-func">cordWrapper</span>, <span class="code-func">ribbon</span>], {</div>
-        <div class="code-line">  opacity: <span class="code-string">0</span>,</div>
-        <div class="code-line">  duration: <span class="code-string">0.5</span>,</div>
-        <div class="code-line">  onComplete: () => {</div>
-        <div class="code-line">    cordWrapper.style.display = <span class="code-string">"none"</span>;</div>
-        <div class="code-line">    ribbon.style.display = <span class="code-string">"none"</span>;</div>
-        <div class="code-line">  }</div>
-        <div class="code-line">});</div>
-      </div>
       <div class="message" id="messageBox">
         <div>
           <h2>¡Genial!</h2>
-          <p>GRACIAS POR ACEPTAR BBSIT@ , LO DE NOSOTRO E UN SECRETO</p>
+          <p>GRACIAS POR ACEPTAR BBSIT@, LO DE NOSOTROS ES UN SECRETO</p>
         </div>
       </div>
     </div>

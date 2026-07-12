@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Lolo</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+  <div id="corwrapper">corwrapper</div>
+  <div id="ribbon">ribbon</div>
+
+  <script>
+    const corwrapper = document.getElementById('corwrapper');
+    const ribbon = document.getElementById('ribbon');
+
+    gsap.to([corwrapper, ribbon], {
+      opacity: 0,
+      duration: 0.5,
+      onComplete: function() {
+        corwrapper.style.display = 'none';
+        ribbon.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
